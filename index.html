@@ -283,7 +283,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <h1>Happy Birthday</h1>
-        <h2 class="glitch" id="birthdaypersonname" style="text-align: center !important;width: 90%;" data-glitch="Bella">Bella</h2>
+        <h2 class="glitch" id="birthdaypersonname" onmouseover="wishBirthdayAudio();" style="text-align: center !important;width: 90%;" data-glitch="Bella">Bella</h2>
         <div class="cake-box">
             <div class="velas">
                 <div class="fuego"></div>
@@ -449,6 +449,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
         <canvas id="canvas"></canvas>
         <div id="altBG"></div>
+		
         <script>
             // helper functions
             const PI2 = Math.PI * 2
@@ -471,6 +472,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             personEle.innerHTML = personName;
             personEle.setAttribute("data-glitch", personName);
             document.getElementById('titleHead').innerHTML = "Happy Birthday " + personName;
+			function wishBirthdayAudio(){
+			try{
+			const utterance = new SpeechSynthesisUtterance(document.getElementById('titleHead').innerHTML);
+
+  // Select a voice
+  const voices = speechSynthesis.getVoices();
+  utterance.voice = voices[0]; // Choose a specific voice
+
+  // Speak the text
+  speechSynthesis.speak(utterance);
+			}catch(err){
+			}
+
+  }
 // container
             class Birthday {
                 constructor() {
@@ -826,7 +841,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             }
 
 
-
         </script>
+		
     </body>
 </html>
